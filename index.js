@@ -32,7 +32,6 @@ app.post('/api/tasks', (request, response) => {
     }
 
   const task = new Task({
-    ids: body.ids,
     task: body.task,
   })
 
@@ -42,7 +41,7 @@ app.post('/api/tasks', (request, response) => {
 })
 
 app.delete('/api/tasks/:id', (request, response) => {
-    Task.findOneAndRemove({id: request.params.id})
+    Task.findByIdAndRemove(request.params.id)
       .then(result => {
         response.status(204).end()
       })

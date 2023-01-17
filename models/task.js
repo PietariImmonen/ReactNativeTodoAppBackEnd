@@ -12,7 +12,6 @@ mongoose.connect(url)
   })
 
   const TaskSchema = new mongoose.Schema({
-    ids: String,
     task: String,
   })
   
