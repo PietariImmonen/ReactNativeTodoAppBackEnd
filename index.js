@@ -3,50 +3,12 @@ const express = require('express')
 const app = express()
 const Task = require('./models/task')
 var cors = require('cors')
-
+const tasksRouter = require('./controllers/tasks')
 
 app.use(cors())
 app.use(express.json())
+app.use(tasksRouter)
 
-/*task.save().then(result => {
-  console.log('task saved!')
-  mongoose.connection.close()
-})*/
-
-
-
-app.get('/api/tasks', (req, res) => {
-    Task.find({}).then(tasks => {
-        res.json(tasks)
-    })
-})
-
-
-app.post('/api/tasks', (request, response) => {
-
-    const body = request.body
-    console.log(body)
-
-    if (body.task === undefined) {
-      return response.status(400).json({ error: 'content missing' })
-    }
-
-  const task = new Task({
-    task: body.task,
-  })
-
-  task.save().then(savedTask => {
-    response.json(savedTask)
-  })
-})
-
-app.delete('/api/tasks/:id', (request, response) => {
-    Task.findByIdAndRemove(request.params.id)
-      .then(result => {
-        response.status(204).end()
-      })
-      .catch(error => response.json(error))
-  })
   
 
 const PORT = 3002

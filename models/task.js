@@ -23,9 +23,5 @@ mongoose.connect(url)
       }
     })
 
-    /*task.save().then(result => {
-  console.log('task saved!')
-  mongoose.connection.close()
-})*/
 
 module.exports = mongoose.model('Task', TaskSchema)
